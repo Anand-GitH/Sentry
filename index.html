@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sentry test for ignoring error from library</title>
+  <script
+  src="https://browser.sentry-cdn.com/6.2.5/bundle.min.js"
+ integrity="sha384-+0tgGyP4idWu9/NA6Jbmnj3SApxIg65/GR1zo3qSieRNyzmmDQ/5a1Yu6mfmUw+v"
+  crossorigin="anonymous"
+></script>
+    <script>
+      Sentry.init({
+        dsn: 'https://7786a02068e24071b5b78a75036911c9@o608132.ingest.sentry.io/5745452',
+        release: "1.1",
+		denyUrls: [
+		/anand-gith\.github\.io\/Sentry\/demo\.js/i,
+		]
+      });
+    </script>
+
+    <script src="https://anand-gith.github.io/Sentry/demo.js" crossorigin="anonymous"></script>
+	
+    <script>
+      var obj = {};
+      obj.invalidFunction(); // this error should always be reported to Sentry
+    </script>
+	
+	<script>
+	function docalc(){
+	a=document.getElementById('num').value
+	b=document.getElementById('dnum').value
+	document.getElementById('res').value=dividend(a,b)
+	}
+	</script>
+  </head>
+  <body>
+  
+	<form>
+	<label for="num">Value of Numerator:</label><br>
+	<input type="number" id="num" name="num"><br>
+	
+	<label for="dnum">Value of Denominator:</label><br>
+	<input type="number" id="dnum" name="dnum"><br><br>
+	
+	<label for="res">Result:</label><br>
+	<input type="number" id="res" name="res"><br><br>
+	
+	<input id="calc" type="button" value="Calculate Division" onclick="docalc();"/>
+	<input id="err" type="button" value="Error in library" onclick="error();"/>
+	</form> 
+	
+  </body>
+</html>

@@ -6,6 +6,11 @@ function dividend(numerator, denominator) {
 	   return quotient;
       }
       else{
-	   throw new Error(numerator + " / " + denominator);
+	   return 0;
       }
-} 
+}
+
+function error() {
+	var obj = {};
+    obj.invalidFunction();	  
+}
